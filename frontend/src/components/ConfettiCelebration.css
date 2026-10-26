@@ -1,0 +1,36 @@
+/* Lightweight Celebration Confetti Animation */
+.confetti-container {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2000;
+  overflow: hidden;
+}
+
+.confetti-piece {
+  position: absolute;
+  top: -20px;
+  border-radius: 2px;
+  opacity: 0.95;
+  animation: confettiFall cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+@keyframes confettiFall {
+  0% {
+    top: -20px;
+    opacity: 1;
+    transform: translateY(0) rotate(0deg) scale(0.8);
+  }
+  25% {
+    transform: translateY(20vh) rotate(180deg) scale(1.1);
+  }
+  75% {
+    opacity: 0.9;
+    transform: translateY(70vh) rotate(360deg) scale(1);
+  }
+  100% {
+    top: 105vh;
+    opacity: 0;
+    transform: translateY(105vh) rotate(540deg) scale(0.6);
+  }
+}

@@ -25,6 +25,15 @@ body {
   font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transition: background-color var(--transition-normal), color var(--transition-normal);
+}
+
+[data-theme="dark"] body {
+  background-color: var(--paper);
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(46, 204, 113, 0.08) 0px, transparent 55%),
+    radial-gradient(at 100% 5%, rgba(245, 166, 35, 0.08) 0px, transparent 50%),
+    radial-gradient(at 50% 95%, rgba(231, 111, 81, 0.06) 0px, transparent 55%);
 }
 
 #root {

@@ -1,4 +1,4 @@
-import React, { useMemo, useState, useEffect } from "react";
+import React, { useMemo, useState, useEffect, useRef } from "react";
 import { useAuth } from "../context/AuthContext";
 import { useApp } from "../context/AppContext";
 import { usersApi } from "../api";
@@ -11,6 +11,23 @@ import "./Home.css";
 
 const quickDistricts = ["Dhaka", "Chattogram", "Sylhet", "Rajshahi", "Khulna", "Barishal"];
 
+const skillCategories = [
+  { id: "all", name: "All", icon: "✨" },
+  { id: "tech", name: "Coding & Tech", icon: "💻", keywords: ["python", "react", "coding", "web", "flutter", "javascript", "sql", "git"] },
+  { id: "languages", name: "Languages", icon: "🗣️", keywords: ["english", "ielts", "spoken", "bangla", "arabic", "french", "german"] },
+  { id: "music", name: "Music", icon: "🎸", keywords: ["guitar", "piano", "singing", "music", "flute", "harmonium"] },
+  { id: "cooking", name: "Culinary", icon: "🍳", keywords: ["cooking", "baking", "biryani", "pitha", "dessert", "culinary"] },
+  { id: "arts", name: "Art & Design", icon: "🎨", keywords: ["graphic", "ui", "illustration", "art", "photography", "calligraphy"] },
+  { id: "academics", name: "Academics", icon: "📚", keywords: ["math", "physics", "accounting", "science", "statistics", "calculus"] }
+];
+
+const livePulseUpdates = [
+  { id: 1, text: "Tanvir & Farhana matched in Dhanmondi, Dhaka", time: "2m ago", skill: "Python ⇄ Spoken English" },
+  { id: 2, text: "Nusrat & Rakib matched in Panchlaish, Chattogram", time: "6m ago", skill: "UI Design ⇄ Acoustic Guitar" },
+  { id: 3, text: "Kamrul & Sadia matched in Zindabazar, Sylhet", time: "11m ago", skill: "Biryani Cooking ⇄ Higher Math" },
+  { id: 4, text: "Sumaiya & Tariq matched in Motihar, Rajshahi", time: "19m ago", skill: "Digital Art ⇄ Content Writing" }
+];
+
 export default function Home() {
   const { user } = useAuth();
   const { neighbors, sendSwapRequest } = useApp();
@@ -18,9 +35,38 @@ export default function Home() {
   const [query, setQuery] = useState("");
   const [currentDistrict, setCurrentDistrict] = useState(user?.district || "Dhaka");
   const [activeTag, setActiveTag] = useState(null);
+  const [activeCategory, setActiveCategory] = useState("all");
   const [isDistrictModalOpen, setIsDistrictModalOpen] = useState(false);
   const [selectedNeighborForRequest, setSelectedNeighborForRequest] = useState(null);
   const [backendMatches, setBackendMatches] = useState([]);
+  const [pulseIndex, setPulseIndex] = useState(0);
+
+  const searchInputRef = useRef(null);
+
+  // Auto-cycle live community pulse ticker every 4 seconds
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setPulseIndex((prev) => (prev + 1) % livePulseUpdates.length);
+    }, 4000);
+    return () => clearInterval(timer);
+  }, []);
+
+  // Keyboard shortcut listener: '/' or 'Ctrl+K' focuses search
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (
+        (e.key === "/" || (e.key === "k" && (e.ctrlKey || e.metaKey))) &&
+        document.activeElement?.tagName !== "INPUT" &&
+        document.activeElement?.tagName !== "TEXTAREA"
+      ) {
+        e.preventDefault();
+        searchInputRef.current?.focus();
+        searchInputRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
 
   // Query personalized mutual skill matches from backend
   useEffect(() => {
@@ -43,9 +89,7 @@ export default function Home() {
     }
     if (!user?.wants || user.wants.length === 0) return [];
     return neighbors.filter((n) => {
-      // Must not be the current user
       if (n.id === user?.id) return false;
-      // Must teach at least one skill that the user wants
       return n.teaches.some((skill) =>
         user.wants.some((wanted) =>
           skill.toLowerCase().includes(wanted.toLowerCase()) ||
@@ -57,6 +101,8 @@ export default function Home() {
 
   // Filtered list of neighbors
   const filteredNeighbors = useMemo(() => {
+    const activeCatObj = skillCategories.find((c) => c.id === activeCategory);
+
     return neighbors.filter((n) => {
       // Exclude current user from browse
       if (n.id === user?.id) return false;
@@ -78,9 +124,17 @@ export default function Home() {
       const matchesTag =
         !activeTag || n.teaches.some((s) => s.toLowerCase().includes(activeTag.toLowerCase()));
 
-      return matchesDistrict && matchesQuery && matchesTag;
+      // Filter by category
+      let matchesCategory = true;
+      if (activeCategory !== "all" && activeCatObj?.keywords) {
+        matchesCategory = n.teaches.some((skill) =>
+          activeCatObj.keywords.some((kw) => skill.toLowerCase().includes(kw))
+        );
+      }
+
+      return matchesDistrict && matchesQuery && matchesTag && matchesCategory;
     });
-  }, [neighbors, user, currentDistrict, query, activeTag]);
+  }, [neighbors, user, currentDistrict, query, activeTag, activeCategory]);
 
   const handleRequestSubmit = (requestData) => {
     sendSwapRequest(requestData);
@@ -89,8 +143,11 @@ export default function Home() {
   const handleResetFilters = () => {
     setQuery("");
     setActiveTag(null);
+    setActiveCategory("all");
     setCurrentDistrict("Dhaka");
   };
+
+  const currentPulse = livePulseUpdates[pulseIndex];
 
   return (
     <div className="home-page">
@@ -155,7 +212,7 @@ export default function Home() {
                 <span className="snapshot-location">{user?.area || "Neighborhood"}, {user?.district || "Dhaka"}</span>
               </div>
               <div className="snapshot-skills-preview">
-                <span className="snapshot-skill-label">You share:</span>
+                <span className="snapshot-skill-label">You offer:</span>
                 <div className="snapshot-skills-tags">
                   {(user?.teaches || ["Coding"]).slice(0, 2).map((s) => (
                     <span key={s} className="snapshot-mini-tag">{s}</span>
@@ -166,19 +223,96 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Modern Interactive Search Bar */}
+        {/* Bento Grid Discovery Hub */}
+        <section className="bento-discovery-hub" aria-label="Discovery & Trust Hub">
+          {/* Bento Tile 1: How it Works (Hero Tile) */}
+          <div className="bento-tile bento-tile--how">
+            <div className="bento-tile-header">
+              <span className="bento-tile-badge">⚡ HOW IT WORKS</span>
+              <h3 className="bento-tile-title">Equal 1-Hour Skill Trade</h3>
+            </div>
+            <p className="bento-tile-desc">
+              Every hour you teach someone, you earn 1 hour to learn from any neighbor. Completely cashless and reciprocal.
+            </p>
+            <div className="how-steps-row">
+              <div className="how-step-item">
+                <div className="step-num-pill">1</div>
+                <span className="step-label">Find a Neighbor</span>
+              </div>
+              <div className="how-step-arrow">→</div>
+              <div className="how-step-item">
+                <div className="step-num-pill">2</div>
+                <span className="step-label">Chat & Agree</span>
+              </div>
+              <div className="how-step-arrow">→</div>
+              <div className="how-step-item">
+                <div className="step-num-pill">3</div>
+                <span className="step-label">Swap & Review</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Bento Tile 2: Live Community Pulse Ticker */}
+          <div className="bento-tile bento-tile--pulse">
+            <div className="pulse-header-row">
+              <div className="pulse-live-indicator">
+                <span className="pulse-dot" />
+                <span className="pulse-live-text">COMMUNITY PULSE</span>
+              </div>
+              <span className="pulse-time">{currentPulse.time}</span>
+            </div>
+            <div className="pulse-content-box">
+              <span className="pulse-text">{currentPulse.text}</span>
+              <div className="pulse-skill-badge">{currentPulse.skill}</div>
+            </div>
+          </div>
+
+          {/* Bento Tile 3: Safety & Privacy Guarantee */}
+          <div className="bento-tile bento-tile--trust">
+            <div className="trust-icon-box">🛡️</div>
+            <div className="trust-text-box">
+              <h4 className="trust-title">Neighborhood Trust Shield</h4>
+              <p className="trust-sub">
+                Phone numbers are never publicly shown. Chat securely in-app before sharing any contact details.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* Category Pills Bar */}
+        <div className="category-chips-bar" role="navigation" aria-label="Skill categories">
+          {skillCategories.map((cat) => (
+            <button
+              key={cat.id}
+              className={`category-chip ${activeCategory === cat.id ? "category-chip--active" : ""}`}
+              onClick={() => {
+                setActiveCategory(cat.id);
+                setActiveTag(null);
+              }}
+            >
+              <span className="category-icon">{cat.icon}</span>
+              <span className="category-name">{cat.name}</span>
+            </button>
+          ))}
+        </div>
+
+        {/* Modern Interactive Search Bar with Keyboard Hotkey Indicator */}
         <div className="search-bar" role="search">
           <svg className="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
             <circle cx="11" cy="11" r="7" stroke="var(--ink-soft)" strokeWidth="2.2" />
             <path d="m21 21-3.5-3.5" stroke="var(--ink-soft)" strokeWidth="2.2" strokeLinecap="round" />
           </svg>
           <input
+            ref={searchInputRef}
             type="search"
             placeholder="Search skills (e.g. Python, Spoken English, Guitar, Digital Art)..."
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             aria-label="Search skills or neighbors"
           />
+          <kbd className="search-kbd" title="Press '/' or 'Ctrl+K' to search">
+            /
+          </kbd>
           {query && (
             <button className="search-clear-btn" onClick={() => setQuery("")} aria-label="Clear search">
               ✕
@@ -219,7 +353,7 @@ export default function Home() {
         </div>
 
         {/* "Matches For You" Carousel */}
-        {recommendations.length > 0 && !query && !activeTag && (
+        {recommendations.length > 0 && !query && !activeTag && activeCategory === "all" && (
           <section className="recommendations-section" aria-label="Recommended neighbors">
             <div className="section-header-row">
               <div className="section-label-group">
@@ -264,9 +398,13 @@ export default function Home() {
             <h2 className="feed-section-heading">
               {filteredNeighbors.length} Skilled Neighbor{filteredNeighbors.length !== 1 ? "s" : ""} in {currentDistrict}
             </h2>
-            <span className="feed-section-sub">Ready to exchange knowledge with you</span>
+            <span className="feed-section-sub">
+              {activeCategory !== "all"
+                ? `Showing ${skillCategories.find((c) => c.id === activeCategory)?.name}`
+                : "Ready to exchange knowledge with you"}
+            </span>
           </div>
-          {(query || activeTag) && (
+          {(query || activeTag || activeCategory !== "all") && (
             <button className="clear-filters-link" onClick={handleResetFilters}>
               Reset filters
             </button>
@@ -279,7 +417,7 @@ export default function Home() {
               <span className="empty-icon">🌱</span>
               <h3 className="empty-title">No matching neighbors found</h3>
               <p className="empty-desc">
-                No neighbors in {currentDistrict} match your search. Try searching for a different skill or picking another district!
+                No neighbors in {currentDistrict} match your current filter. Try searching for a different skill or picking another district!
               </p>
               <button className="secondary-btn" onClick={handleResetFilters}>
                 View All in {currentDistrict}

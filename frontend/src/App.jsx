@@ -16,6 +16,7 @@ import Notifications from "./pages/Notifications";
 
 import BottomNav from "./components/BottomNav";
 import Toast from "./components/Toast";
+import ConfettiCelebration from "./components/ConfettiCelebration";
 
 function AppShell() {
   const location = useLocation();
@@ -52,6 +53,9 @@ function AppShell() {
 
       {/* Global Floating Toast */}
       <Toast toast={toast} onClose={closeToast} />
+
+      {/* Global Confetti Micro-interaction */}
+      <ConfettiCelebration />
 
       {/* Persistent Bottom Nav (Visible on Mobile only via CSS) */}
       {isNavVisible && <BottomNav />}

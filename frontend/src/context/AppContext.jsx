@@ -14,6 +14,25 @@ export function AppProvider({ children }) {
   const [notifications, setNotifications] = useState(initialNotifications);
   const [blockedUserIds, setBlockedUserIds] = useState([]);
   const [toast, setToast] = useState(null);
+  const [confettiActive, setConfettiActive] = useState(false);
+  const [theme, setTheme] = useState(() => {
+    return localStorage.getItem("oporajito_theme") || "light";
+  });
+
+  // Apply theme to document element
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", theme);
+    localStorage.setItem("oporajito_theme", theme);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme((prev) => (prev === "dark" ? "light" : "dark"));
+  };
+
+  const triggerConfetti = () => {
+    setConfettiActive(true);
+    setTimeout(() => setConfettiActive(false), 2500);
+  };
 
   // Load real neighbors from MongoDB via FastAPI on startup
   useEffect(() => {
@@ -117,6 +136,7 @@ export function AppProvider({ children }) {
     setNotifications((prev) => [newNotif, ...prev]);
 
     showToast(`Request sent to ${toNeighbor.name.split(" ")[0]}!`, "success");
+    triggerConfetti();
     return newRequest;
   };
 
@@ -395,7 +415,11 @@ export function AppProvider({ children }) {
         markNotificationRead,
         markAllNotificationsRead,
         blockUser,
-        reportUser
+        reportUser,
+        theme,
+        toggleTheme,
+        confettiActive,
+        triggerConfetti
       }}
     >
       {children}
