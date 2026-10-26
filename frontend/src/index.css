@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,800&family=Manrope:wght@400;500;600;700;800&display=swap');
 @import './styles/tokens.css';
 @import './styles/design-system.css';
 
@@ -14,7 +14,13 @@ html, body {
 }
 
 body {
-  background: var(--paper);
+  background-color: var(--paper);
+  /* Modern ambient light mesh across the viewport */
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(11, 94, 66, 0.05) 0px, transparent 55%),
+    radial-gradient(at 100% 5%, rgba(245, 166, 35, 0.06) 0px, transparent 50%),
+    radial-gradient(at 50% 95%, rgba(196, 96, 63, 0.04) 0px, transparent 55%);
+  background-attachment: fixed;
   color: var(--ink);
   font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
@@ -30,10 +36,12 @@ body {
 
 button {
   font-family: inherit;
+  outline: none;
 }
 
 input, textarea, select {
   font-family: inherit;
+  outline: none;
 }
 
 a {
@@ -42,7 +50,7 @@ a {
 }
 
 :focus-visible {
-  outline: 2.5px solid var(--marigold-deep);
+  outline: 2px solid var(--green-mid);
   outline-offset: 2px;
 }
 
@@ -60,7 +68,6 @@ a {
   width: 100%;
   display: flex;
   flex-direction: column;
-  background: var(--paper);
   position: relative;
 }
 
@@ -74,25 +81,26 @@ a {
 /* Responsive Content Containers */
 .container-desktop {
   width: 100%;
-  max-width: 1200px;
+  max-width: 1220px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 24px;
 }
 
 .container-narrow {
   width: 100%;
   max-width: 860px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 24px;
 }
 
 .container-auth {
   width: 100%;
-  max-width: 480px;
+  max-width: 460px;
   margin: 0 auto;
+  padding: 0 20px;
 }
 
-/* Custom sleek scrollbar */
+/* Custom modern sleek scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
@@ -103,10 +111,16 @@ a {
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: var(--line-strong);
-  border-radius: 4px;
+  background: rgba(28, 35, 31, 0.16);
+  border-radius: 9999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background-color: var(--ink-soft);
+  background: rgba(11, 94, 66, 0.35);
+}
+
+/* Subtle selection color */
+::selection {
+  background: var(--green-tint);
+  color: var(--green-deep);
 }

@@ -1,3 +1,4 @@
+/* Modern Glassmorphic Login & Auth Styling */
 .login-page {
   flex: 1;
   display: flex;
@@ -8,13 +9,15 @@
 
 @media (min-width: 600px) {
   .login-page {
-    max-width: 480px;
-    margin: 48px auto 60px;
-    padding: 40px 36px;
-    background: var(--card);
-    border: 1px solid var(--line);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-card);
+    max-width: 500px;
+    margin: 50px auto 60px;
+    padding: 44px 40px;
+    background: var(--card-glass);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--line-glass);
+    border-radius: var(--radius-xl);
+    box-shadow: 0 20px 48px rgba(11, 28, 20, 0.12);
   }
 }
 
@@ -24,39 +27,44 @@
   align-items: center;
   text-align: center;
   gap: 8px;
-  margin-bottom: 24px;
+  margin-bottom: 28px;
 }
 
 .brand-mark {
-  width: 58px;
-  height: 58px;
-  border-radius: 18px;
-  background: var(--green-deep);
-  color: var(--marigold);
+  width: 64px;
+  height: 64px;
+  border-radius: 20px;
+  background: var(--grad-hero);
+  color: #FFFFFF;
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: var(--font-display);
-  font-size: 32px;
+  font-size: 34px;
   font-weight: 700;
-  box-shadow: 0 8px 24px rgba(11, 94, 66, 0.25);
-  margin-bottom: 6px;
+  box-shadow: 0 10px 28px rgba(11, 94, 66, 0.32);
+  border: 1.5px solid rgba(255, 255, 255, 0.3);
+  margin-bottom: 8px;
+  position: relative;
 }
 
 .brand-title {
   font-family: var(--font-display);
-  font-size: 32px;
-  font-weight: 600;
+  font-size: 34px;
+  font-weight: 700;
   color: var(--green-deep);
   margin: 0;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.02em;
+  background: linear-gradient(135deg, #073B29 0%, #0B5E42 70%, #14795A 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .brand-sub {
-  font-size: 13.5px;
+  font-size: 14px;
   color: var(--ink-soft);
-  max-width: 280px;
-  line-height: 1.5;
+  max-width: 320px;
+  line-height: 1.55;
   margin: 0;
 }
 
@@ -67,11 +75,11 @@
 
 .field-label {
   font-size: 12px;
-  font-weight: 700;
-  color: var(--ink);
+  font-weight: 800;
+  color: var(--ink-secondary);
   margin-bottom: 8px;
   text-transform: uppercase;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.05em;
 }
 
 .phone-input-container {
@@ -79,14 +87,15 @@
   align-items: center;
   border: 1.5px solid var(--line-strong);
   border-radius: var(--radius-md);
-  background: var(--card);
+  background: #FFFFFF;
   overflow: hidden;
-  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+  transition: all var(--transition-fast);
+  box-shadow: var(--shadow-sm);
 }
 
 .phone-input-container:focus-within {
   border-color: var(--green-mid);
-  box-shadow: 0 0 0 3px rgba(20, 121, 90, 0.12);
+  box-shadow: 0 0 0 4px rgba(20, 121, 90, 0.12);
 }
 
 .phone-input-container--error {
@@ -96,24 +105,24 @@
 .phone-prefix {
   display: flex;
   align-items: center;
-  gap: 5px;
-  padding: 13px 12px;
-  font-weight: 700;
+  gap: 6px;
+  padding: 14px 14px;
+  font-weight: 800;
   color: var(--ink);
   border-right: 1.5px solid var(--line);
-  background: var(--green-tint);
+  background: rgba(11, 94, 66, 0.05);
   user-select: none;
 }
 
 .bd-flag {
-  font-size: 16px;
+  font-size: 17px;
 }
 
 .phone-input-container input {
   flex: 1;
   border: none;
   outline: none;
-  padding: 13px 14px;
+  padding: 14px 16px;
   font-size: 16px;
   font-weight: 600;
   background: transparent;
@@ -122,10 +131,10 @@
 }
 
 .field-hint {
-  font-size: 11.5px;
+  font-size: 12px;
   color: var(--ink-soft);
-  margin: 6px 2px 16px;
-  line-height: 1.4;
+  margin: 8px 2px 18px;
+  line-height: 1.45;
 }
 
 .field-error {
@@ -136,14 +145,14 @@
 }
 
 .onboarding-toggle-row {
-  margin-bottom: 18px;
+  margin-bottom: 20px;
 }
 
 .checkbox-label {
   display: flex;
   align-items: center;
-  gap: 8px;
-  font-size: 12px;
+  gap: 10px;
+  font-size: 12.5px;
   color: var(--ink-soft);
   cursor: pointer;
   user-select: none;
@@ -151,34 +160,37 @@
 
 .checkbox-label input[type="checkbox"] {
   accent-color: var(--green-deep);
-  width: 16px;
-  height: 16px;
+  width: 17px;
+  height: 17px;
   cursor: pointer;
 }
 
 .login-btn {
-  margin-bottom: 20px;
+  margin-bottom: 22px;
+  padding: 14px 22px;
+  font-size: 15px;
 }
 
 .dev-shortcuts-box {
-  background: var(--paper);
-  border: 1px dashed var(--line-strong);
-  border-radius: var(--radius-sm);
-  padding: 10px 12px;
-  margin-bottom: 18px;
+  background: rgba(255, 255, 255, 0.85);
+  border: 1.5px dashed var(--line-strong);
+  border-radius: var(--radius-md);
+  padding: 12px 14px;
+  margin-bottom: 20px;
 }
 
 .shortcuts-label {
   display: block;
-  font-size: 11px;
-  font-weight: 700;
+  font-size: 11.5px;
+  font-weight: 800;
   color: var(--ink-soft);
-  margin-bottom: 6px;
+  margin-bottom: 8px;
+  letter-spacing: 0.03em;
 }
 
 .shortcut-buttons {
   display: flex;
-  gap: 6px;
+  gap: 8px;
   flex-wrap: wrap;
 }
 
@@ -186,37 +198,39 @@
   border: 1px solid var(--green-tint-border);
   background: var(--green-tint);
   color: var(--green-deep);
-  font-size: 11px;
+  font-size: 11.5px;
   font-weight: 700;
-  padding: 4px 8px;
+  padding: 5px 10px;
   border-radius: var(--radius-full);
   cursor: pointer;
   transition: all var(--transition-fast);
 }
 
 .shortcut-pill:hover {
-  background: var(--green-mid);
+  background: var(--green-deep);
   color: #FFFFFF;
+  transform: translateY(-1px);
 }
 
 .shortcut-pill--new {
-  border-color: var(--marigold);
+  border-color: rgba(245, 166, 35, 0.4);
   background: var(--status-pending-bg);
-  color: #7A4B0A;
+  color: #8C560B;
 }
 
 .safety-guarantee {
   display: flex;
   align-items: center;
-  gap: 8px;
-  font-size: 11.5px;
+  gap: 10px;
+  font-size: 12px;
   color: var(--green-deep);
   font-weight: 600;
-  line-height: 1.4;
+  line-height: 1.45;
   text-align: left;
-  background: var(--green-tint);
-  padding: 10px 12px;
-  border-radius: var(--radius-sm);
+  background: rgba(11, 94, 66, 0.06);
+  padding: 12px 14px;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(11, 94, 66, 0.12);
 }
 
 .safety-guarantee svg {

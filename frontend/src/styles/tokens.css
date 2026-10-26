@@ -1,61 +1,78 @@
-/* Design Tokens for Oporajito
+/* Modern Design Tokens for Oporajito
    Hyperlocal Skill-Sharing Web Application (Bangladesh) */
 
 :root {
-  /* Brand Palette */
-  --green-deep: #0B5E42;       /* Primary brand green */
+  /* Brand Palette - Modern Enriched Tones */
+  --green-deep: #0B5E42;       /* Primary brand emerald */
   --green-mid: #14795A;        /* Interactive/hover green */
-  --green-light: #1E9E76;      /* Accent green */
-  --green-tint: #E6F1EA;       /* Soft green background tint */
-  --green-tint-border: #BCD9C7;/* Border for green tint */
+  --green-light: #1E9E76;      /* Accent vibrant green */
+  --green-dark: #073B29;       /* Deepest emerald for contrast */
+  --green-tint: rgba(11, 94, 66, 0.08); /* Translucent soft green */
+  --green-tint-border: rgba(11, 94, 66, 0.2);
 
-  --marigold: #E8A33D;         /* Warm golden accent */
-  --marigold-deep: #C97F1E;    /* Darker marigold for borders & text */
-  --marigold-tint: #FCF4E7;    /* Soft marigold background */
+  --marigold: #F5A623;         /* Warm sunstone gold */
+  --marigold-deep: #D48810;    /* Darker marigold for borders & contrast */
+  --marigold-light: #FFBE53;   /* Glowing gold highlight */
+  --marigold-tint: rgba(245, 166, 35, 0.12); /* Translucent soft gold */
 
-  --clay: #C4603F;             /* Secondary terracotta/clay */
-  --clay-deep: #A44C2E;        /* Deep clay for hover/accents */
-  --clay-tint: #F5E3DB;        /* Soft clay background */
+  --clay: #C4603F;             /* Terracotta / red soil clay */
+  --clay-deep: #A04426;        /* Deep earthy terracotta */
+  --clay-tint: rgba(196, 96, 63, 0.1);
 
-  --ink: #1C231F;              /* Deep readable ink black */
-  --ink-soft: #5B685F;         /* Muted text grey-green */
-  --ink-light: #8E9C92;        /* Subtle secondary text */
+  /* Modern Neutrals & Typography Colors */
+  --ink: #111815;              /* Ultra-crisp readable dark ink */
+  --ink-secondary: #2C3831;    /* Strong body copy */
+  --ink-soft: #5E6D64;         /* Soft supporting text */
+  --ink-muted: #8E9C93;        /* Subtle meta info & icons */
 
-  --paper: #F3F6F0;            /* Warm Bangladeshi paper background */
-  --card: #FFFFFF;             /* Pure card white */
-  --line: #DEE5DA;             /* Soft dividing line */
-  --line-strong: #C4D0C0;      /* Distinct input/card border */
+  /* Surface & Canvas System */
+  --paper: #F6F8F5;            /* Pure soft canvas */
+  --card: #FFFFFF;             /* Crisp card white */
+  --card-glass: rgba(255, 255, 255, 0.88); /* Modern frosted glass surface */
+  --card-glass-hover: rgba(255, 255, 255, 0.96);
+  --line: rgba(28, 35, 31, 0.08); /* Modern subtle divider */
+  --line-strong: rgba(28, 35, 31, 0.15); /* Defined border */
+  --line-glass: rgba(255, 255, 255, 0.6);
+
+  /* Gradients */
+  --grad-hero: linear-gradient(135deg, #073B29 0%, #0B5E42 55%, #14795A 100%);
+  --grad-marigold: linear-gradient(135deg, #F5A623 0%, #E08E12 100%);
+  --grad-emerald: linear-gradient(135deg, #0B5E42 0%, #178B68 100%);
+  --grad-clay: linear-gradient(135deg, #D46A47 0%, #B24925 100%);
+  --grad-glow: radial-gradient(circle at 50% 0%, rgba(20, 121, 90, 0.15), transparent 70%);
 
   /* Status Colors */
-  --status-pending: #E8A33D;
-  --status-pending-bg: #FCF4E7;
+  --status-pending: #D48810;
+  --status-pending-bg: rgba(245, 166, 35, 0.12);
   --status-accepted: #0B5E42;
-  --status-accepted-bg: #E6F1EA;
+  --status-accepted-bg: rgba(11, 94, 66, 0.1);
   --status-declined: #C4603F;
-  --status-declined-bg: #F5E3DB;
+  --status-declined-bg: rgba(196, 96, 63, 0.1);
   --status-completed: #14795A;
-  --status-completed-bg: #D9EFE6;
+  --status-completed-bg: rgba(20, 121, 90, 0.14);
 
   /* Typography */
-  --font-display: 'Fraunces', Georgia, 'Times New Roman', serif;
+  --font-display: 'Fraunces', Georgia, serif;
   --font-body: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 
-  /* Border Radii */
+  /* Modern Border Radii */
   --radius-xs: 6px;
-  --radius-sm: 9px;
-  --radius-md: 14px;
-  --radius-lg: 22px;
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
   --radius-xl: 32px;
   --radius-full: 9999px;
 
-  /* Shadows */
-  --shadow-sm: 0 1px 3px rgba(28, 35, 31, 0.05);
-  --shadow-card: 0 1px 2px rgba(28, 35, 31, 0.04), 0 8px 24px rgba(28, 35, 31, 0.07);
-  --shadow-pop: 0 12px 32px rgba(11, 94, 66, 0.16);
-  --shadow-sheet: 0 -8px 32px rgba(28, 35, 31, 0.16);
-  --shadow-float: 0 6px 20px rgba(0, 0, 0, 0.12);
+  /* Multi-Layer Premium Shadows */
+  --shadow-sm: 0 1px 3px rgba(17, 24, 21, 0.04), 0 1px 2px rgba(17, 24, 21, 0.02);
+  --shadow-card: 0 4px 6px -1px rgba(17, 24, 21, 0.04), 0 10px 24px -3px rgba(17, 24, 21, 0.06);
+  --shadow-card-hover: 0 12px 30px -4px rgba(11, 94, 66, 0.12), 0 4px 10px rgba(0, 0, 0, 0.04);
+  --shadow-pop: 0 14px 36px -4px rgba(11, 94, 66, 0.22);
+  --shadow-sheet: 0 -12px 40px rgba(17, 24, 21, 0.18);
+  --shadow-glass: 0 8px 32px 0 rgba(11, 94, 66, 0.08);
 
   /* Transitions */
-  --transition-fast: 0.15s ease;
-  --transition-normal: 0.25s ease;
+  --transition-fast: 0.16s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-normal: 0.26s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-bounce: 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
 }

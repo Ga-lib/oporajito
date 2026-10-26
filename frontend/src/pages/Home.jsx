@@ -101,28 +101,80 @@ export default function Home() {
       />
 
       <div className="home-content container-desktop">
-        {/* Personalized Welcome Banner */}
-        <div className="home-welcome">
-          <div className="welcome-text">
-            <span className="welcome-greeting">Assalamu Alaikum,</span>
-            <h2 className="welcome-name">
-              {user?.name ? user.name.split(" ")[0] : "Neighbor"} <span>👋🏽</span>
-            </h2>
-          </div>
-          <div className="current-user-avatar-badge" aria-hidden="true">
-            {user?.avatar || "🧑🏽‍💻"}
-          </div>
-        </div>
+        {/* Modern Hero Showcase Card */}
+        <section className="home-hero-card" aria-label="Hyperlocal Skill Sharing Banner">
+          <div className="hero-glow-orb hero-glow-orb--left" />
+          <div className="hero-glow-orb hero-glow-orb--right" />
 
-        {/* Search Bar */}
+          <div className="hero-main-content">
+            <div className="hero-badge-pill">
+              <span className="hero-flag">🇧🇩</span>
+              <span>Hyperlocal Skill Sharing in <strong>{currentDistrict}</strong></span>
+              <button
+                className="hero-change-district-btn"
+                onClick={() => setIsDistrictModalOpen(true)}
+              >
+                Change
+              </button>
+            </div>
+
+            <h1 className="hero-title">
+              Empowering Bangladesh, <br className="hero-br" />
+              <span className="hero-highlight">Neighbor to Neighbor.</span>
+            </h1>
+
+            <p className="hero-description">
+              Trade programming, music, language, arts, and cooking directly with people in your neighborhood — zero currency, 100% peer-to-peer.
+            </p>
+
+            <div className="hero-stats-row">
+              <div className="hero-stat-pill">
+                <span className="stat-icon">🛡️</span>
+                <span>Verified Neighbors</span>
+              </div>
+              <div className="hero-stat-pill">
+                <span className="stat-icon">📍</span>
+                <span>64 Districts</span>
+              </div>
+              <div className="hero-stat-pill">
+                <span className="stat-icon">🤝</span>
+                <span>Mutual Matchmaking</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="hero-user-snapshot">
+            <div className="user-snapshot-card">
+              <div className="snapshot-avatar-ring">
+                <div className="snapshot-avatar">{user?.avatar || "🧑🏽‍💻"}</div>
+                <div className="snapshot-pulse-dot" />
+              </div>
+              <div className="snapshot-info">
+                <span className="snapshot-greeting">Assalamu Alaikum,</span>
+                <span className="snapshot-name">{user?.name ? user.name.split(" ")[0] : "Neighbor"} 👋🏽</span>
+                <span className="snapshot-location">{user?.area || "Neighborhood"}, {user?.district || "Dhaka"}</span>
+              </div>
+              <div className="snapshot-skills-preview">
+                <span className="snapshot-skill-label">You share:</span>
+                <div className="snapshot-skills-tags">
+                  {(user?.teaches || ["Coding"]).slice(0, 2).map((s) => (
+                    <span key={s} className="snapshot-mini-tag">{s}</span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Modern Interactive Search Bar */}
         <div className="search-bar" role="search">
-          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <svg className="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
             <circle cx="11" cy="11" r="7" stroke="var(--ink-soft)" strokeWidth="2.2" />
             <path d="m21 21-3.5-3.5" stroke="var(--ink-soft)" strokeWidth="2.2" strokeLinecap="round" />
           </svg>
           <input
             type="search"
-            placeholder="Search skill (e.g. Guitar, Python, IELTS)..."
+            placeholder="Search skills (e.g. Python, Spoken English, Guitar, Digital Art)..."
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             aria-label="Search skills or neighbors"
@@ -134,7 +186,7 @@ export default function Home() {
           )}
         </div>
 
-        {/* Skill Tag Filters */}
+        {/* Skill Tag Filters Carousel */}
         <div className="tag-scroll-row" role="region" aria-label="Skill tags">
           {popularSkillTags.slice(0, 10).map((tag) => (
             <button
@@ -142,7 +194,7 @@ export default function Home() {
               className={`tag-pill ${activeTag === tag ? "tag-pill--active" : ""}`}
               onClick={() => setActiveTag(activeTag === tag ? null : tag)}
             >
-              {tag}
+              <span>{tag}</span>
             </button>
           ))}
         </div>
@@ -166,20 +218,27 @@ export default function Home() {
           </button>
         </div>
 
-        {/* "People who teach what you want to learn" Shelf */}
+        {/* "Matches For You" Carousel */}
         {recommendations.length > 0 && !query && !activeTag && (
           <section className="recommendations-section" aria-label="Recommended neighbors">
             <div className="section-header-row">
-              <span className="section-label">🎯 Matches For You</span>
-              <span className="section-sub">Teaches what you want to learn</span>
+              <div className="section-label-group">
+                <span className="section-sparkle">✨</span>
+                <span className="section-label">Mutual Skill Matches</span>
+                <span className="section-badge-counter">{recommendations.length}</span>
+              </div>
+              <span className="section-sub">Teaches what you are looking to learn</span>
             </div>
 
             <div className="recommendations-carousel">
               {recommendations.map((person) => (
                 <div key={person.id} className="recommendation-card">
-                  <div className="rec-avatar">{person.avatar}</div>
+                  <div className="rec-match-pill">Mutual Match</div>
+                  <div className="rec-avatar-ring">
+                    <div className="rec-avatar">{person.avatar || "🧑🏽"}</div>
+                  </div>
                   <span className="rec-name">{person.name}</span>
-                  <span className="rec-area">{person.area}</span>
+                  <span className="rec-area">{person.area || "Neighborhood"}</span>
                   <div className="rec-skill-chip">
                     {person.teaches.find((s) =>
                       user?.wants?.some((w) => s.toLowerCase().includes(w.toLowerCase()))
@@ -189,7 +248,7 @@ export default function Home() {
                     className="rec-request-btn"
                     onClick={() => setSelectedNeighborForRequest(person)}
                   >
-                    Request
+                    <span>Swap Skills</span>
                   </button>
                 </div>
               ))}
@@ -201,9 +260,12 @@ export default function Home() {
 
         {/* Main Feed Section */}
         <div className="feed-header">
-          <h3 className="section-label">
-            {filteredNeighbors.length} Skilled Neighbor{filteredNeighbors.length !== 1 ? "s" : ""} in {currentDistrict}
-          </h3>
+          <div className="feed-title-wrap">
+            <h2 className="feed-section-heading">
+              {filteredNeighbors.length} Skilled Neighbor{filteredNeighbors.length !== 1 ? "s" : ""} in {currentDistrict}
+            </h2>
+            <span className="feed-section-sub">Ready to exchange knowledge with you</span>
+          </div>
           {(query || activeTag) && (
             <button className="clear-filters-link" onClick={handleResetFilters}>
               Reset filters
@@ -215,9 +277,9 @@ export default function Home() {
           {filteredNeighbors.length === 0 ? (
             <div className="empty-box">
               <span className="empty-icon">🌱</span>
-              <h4 className="empty-title">No matching neighbors found</h4>
+              <h3 className="empty-title">No matching neighbors found</h3>
               <p className="empty-desc">
-                No neighbors in {currentDistrict} match your current filter. Try searching a different skill or picking another district!
+                No neighbors in {currentDistrict} match your search. Try searching for a different skill or picking another district!
               </p>
               <button className="secondary-btn" onClick={handleResetFilters}>
                 View All in {currentDistrict}

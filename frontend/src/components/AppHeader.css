@@ -1,52 +1,78 @@
+/* Modern Frosted Header for Oporajito */
 .app-top-header {
-  background: var(--card);
-  border-bottom: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(11, 94, 66, 0.08);
   position: sticky;
   top: 0;
   z-index: 100;
   width: 100%;
-  box-shadow: 0 1px 4px rgba(28, 35, 31, 0.04);
+  box-shadow: 0 4px 20px rgba(11, 28, 20, 0.04);
+  transition: all var(--transition-fast);
 }
 
 .header-inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-top: 12px;
-  padding-bottom: 12px;
-  min-height: 60px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  min-height: 64px;
 }
 
 .header-left {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
 }
 
 .brand-badge-mini {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   cursor: pointer;
   user-select: none;
+  transition: transform var(--transition-fast);
+}
+
+.brand-badge-mini:hover {
+  transform: scale(1.02);
 }
 
 .brand-dot-box {
-  width: 34px;
-  height: 34px;
-  border-radius: 10px;
-  background: var(--green-deep);
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  background: var(--grad-hero);
   color: var(--marigold);
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 2px 6px rgba(11, 94, 66, 0.2);
+  box-shadow: 0 4px 12px rgba(11, 94, 66, 0.28);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  position: relative;
+  overflow: hidden;
+}
+
+.brand-dot-box::before {
+  content: "";
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #2ECC71;
+  box-shadow: 0 0 8px #2ECC71;
 }
 
 .brand-mark-char {
   font-family: var(--font-display);
-  font-size: 19px;
+  font-size: 21px;
   font-weight: 700;
+  color: #FFFFFF;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
 .brand-text-group {
@@ -56,11 +82,14 @@
 
 .brand-name-mini {
   font-family: var(--font-display);
-  font-size: 20px;
+  font-size: 21px;
   font-weight: 700;
   color: var(--green-deep);
-  letter-spacing: -0.01em;
+  letter-spacing: -0.02em;
   line-height: 1.1;
+  background: linear-gradient(135deg, #073B29 0%, #0B5E42 70%, #14795A 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .brand-subtitle-desktop {
@@ -68,77 +97,86 @@
   color: var(--ink-soft);
   font-weight: 600;
   display: none;
+  letter-spacing: 0.02em;
 }
 
 .header-title-mobile {
   font-family: var(--font-display);
-  font-size: 18px;
-  font-weight: 600;
+  font-size: 19px;
+  font-weight: 700;
   color: var(--ink);
   margin: 0;
 }
 
 .back-btn {
-  background: none;
+  background: rgba(0, 0, 0, 0.04);
   border: none;
   display: flex;
   align-items: center;
-  gap: 4px;
-  padding: 6px 8px;
-  margin-left: -6px;
+  gap: 6px;
+  padding: 8px 12px;
   color: var(--ink);
   cursor: pointer;
   font-weight: 700;
   font-size: 13.5px;
-  border-radius: var(--radius-sm);
-  transition: background var(--transition-fast);
+  border-radius: var(--radius-full);
+  transition: all var(--transition-fast);
 }
 
 .back-btn:hover {
-  background: var(--paper);
+  background: rgba(11, 94, 66, 0.1);
+  color: var(--green-deep);
+  transform: translateX(-2px);
 }
 
 .back-btn-text {
   display: none;
 }
 
-/* Desktop Navigation Links */
+/* Desktop Navigation Links - Modern Pill Tabs */
 .desktop-nav-links {
   display: none;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
+  background: rgba(0, 0, 0, 0.03);
+  padding: 4px;
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(0, 0, 0, 0.04);
 }
 
 .desktop-nav-link {
   display: flex;
   align-items: center;
-  gap: 6px;
-  padding: 8px 16px;
+  gap: 8px;
+  padding: 8px 18px;
   border-radius: var(--radius-full);
   font-size: 13.5px;
   font-weight: 700;
   color: var(--ink-soft);
   transition: all var(--transition-fast);
   text-decoration: none;
+  position: relative;
 }
 
 .desktop-nav-link:hover {
   color: var(--green-deep);
-  background: var(--green-tint);
+  background: rgba(255, 255, 255, 0.8);
 }
 
 .desktop-nav-link--active {
   color: var(--green-deep);
-  background: var(--green-tint);
+  background: #FFFFFF;
+  box-shadow: 0 2px 8px rgba(11, 94, 66, 0.12);
 }
 
 .desktop-badge {
-  background: var(--marigold);
-  color: #3A2506;
-  font-size: 10px;
+  background: var(--grad-marigold);
+  color: #2A1902;
+  font-size: 10.5px;
   font-weight: 800;
-  padding: 1px 6px;
-  border-radius: 100px;
+  padding: 1px 7px;
+  border-radius: var(--radius-full);
+  box-shadow: 0 2px 5px rgba(245, 166, 35, 0.3);
 }
 
 /* Header Right */
@@ -151,98 +189,117 @@
 .district-header-pill {
   display: flex;
   align-items: center;
-  gap: 6px;
-  background: var(--paper);
+  gap: 7px;
+  background: rgba(255, 255, 255, 0.9);
   color: var(--green-deep);
-  border: 1.5px solid var(--line-strong);
+  border: 1.5px solid var(--green-tint-border);
   font-size: 12.5px;
   font-weight: 700;
-  padding: 6px 12px;
+  padding: 7px 14px;
   border-radius: var(--radius-full);
   cursor: pointer;
   transition: all var(--transition-fast);
+  box-shadow: 0 2px 6px rgba(11, 94, 66, 0.06);
 }
 
 .district-header-pill:hover {
   background: var(--green-tint);
   border-color: var(--green-mid);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(11, 94, 66, 0.12);
 }
 
 .pill-arrow {
   font-size: 10px;
-  opacity: 0.7;
+  opacity: 0.8;
+  color: var(--green-mid);
 }
 
 .notif-bell-btn {
   position: relative;
-  background: none;
+  background: rgba(0, 0, 0, 0.03);
   border: none;
-  padding: 7px;
+  width: 38px;
+  height: 38px;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--ink);
   border-radius: 50%;
-  transition: background var(--transition-fast);
+  transition: all var(--transition-fast);
 }
 
 .notif-bell-btn:hover {
-  background: var(--paper);
+  background: var(--green-tint);
+  color: var(--green-deep);
+  transform: scale(1.05);
 }
 
 .notif-badge {
   position: absolute;
-  top: 3px;
-  right: 3px;
+  top: 1px;
+  right: 1px;
   background: var(--clay);
   color: #FFFFFF;
   font-size: 10px;
   font-weight: 800;
-  min-width: 16px;
-  height: 16px;
+  min-width: 17px;
+  height: 17px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1.5px solid var(--card);
+  border: 2px solid #FFFFFF;
+  box-shadow: 0 2px 6px rgba(196, 96, 63, 0.4);
+  animation: pulseBadge 2s infinite ease-in-out;
+}
+
+@keyframes pulseBadge {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.12); }
 }
 
 .desktop-profile-btn {
   display: none;
   align-items: center;
-  gap: 8px;
-  background: var(--paper);
-  border: 1.5px solid var(--line);
-  padding: 4px 12px 4px 5px;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
+  border: 1.5px solid var(--line-strong);
+  padding: 4px 14px 4px 5px;
   border-radius: var(--radius-full);
   cursor: pointer;
   transition: all var(--transition-fast);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
 }
 
 .desktop-profile-btn:hover {
   border-color: var(--green-mid);
   background: var(--green-tint);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(11, 94, 66, 0.12);
 }
 
 .desktop-profile-avatar {
-  width: 28px;
-  height: 28px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
-  background: var(--card);
+  background: #FFFFFF;
+  border: 1.5px solid var(--green-tint-border);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 16px;
+  font-size: 17px;
 }
 
 .desktop-profile-name {
-  font-size: 13px;
+  font-size: 13.5px;
   font-weight: 700;
   color: var(--ink);
 }
 
-/* Tablet & Desktop Breakpoint (min-width: 768px) */
+/* Tablet & Desktop Breakpoint */
 @media (min-width: 768px) {
   .brand-subtitle-desktop {
     display: inline-block;

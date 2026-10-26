@@ -1,109 +1,239 @@
+/* Modern Glassmorphic Neighbor Card */
 .neighbor-card {
   display: flex;
-  gap: 12px;
-  background: var(--card);
-  border: 1px solid var(--line);
-  border-radius: var(--radius-md);
-  padding: 14px;
+  gap: 16px;
+  background: var(--card-glass);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--line-glass);
+  border-radius: var(--radius-lg);
+  padding: 18px 20px;
   box-shadow: var(--shadow-card);
   align-items: flex-start;
   position: relative;
   cursor: pointer;
-  transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
+  transition: all var(--transition-normal);
+  overflow: hidden;
+}
+
+.neighbor-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--green-deep), var(--marigold), transparent);
+  opacity: 0;
+  transition: opacity var(--transition-fast);
 }
 
 .neighbor-card:hover {
-  border-color: var(--line-strong);
-  box-shadow: 0 4px 16px rgba(28, 35, 31, 0.08);
-  transform: translateY(-1px);
+  border-color: rgba(11, 94, 66, 0.22);
+  box-shadow: var(--shadow-card-hover);
+  transform: translateY(-3px);
+}
+
+.neighbor-card:hover::before {
+  opacity: 1;
+}
+
+/* Avatar with Gradient Ring */
+.neighbor-avatar-wrap {
+  position: relative;
+  flex-shrink: 0;
 }
 
 .neighbor-avatar {
-  width: 50px;
-  height: 50px;
+  width: 56px;
+  height: 56px;
   border-radius: 50%;
-  background: var(--green-tint);
-  border: 2px solid var(--card);
-  outline: 1.5px dashed var(--line-strong);
-  outline-offset: 2px;
+  background: linear-gradient(135deg, rgba(11, 94, 66, 0.08) 0%, rgba(245, 166, 35, 0.12) 100%);
+  border: 2px solid #FFFFFF;
+  box-shadow: 0 4px 12px rgba(11, 94, 66, 0.12);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 24px;
-  flex-shrink: 0;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  font-size: 26px;
+  transition: transform var(--transition-fast);
 }
 
+.neighbor-card:hover .neighbor-avatar {
+  transform: scale(1.06) rotate(3deg);
+}
+
+.neighbor-verified-check {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 18px;
+  height: 18px;
+  background: #2ECC71;
+  color: #FFFFFF;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 800;
+  border: 2px solid #FFFFFF;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+/* Info Section */
 .neighbor-info {
   flex: 1;
   min-width: 0;
   display: flex;
   flex-direction: column;
-  gap: 3px;
+  gap: 5px;
 }
 
 .neighbor-top {
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
+  align-items: center;
+  gap: 10px;
+}
+
+.neighbor-name-row {
+  display: flex;
+  align-items: center;
   gap: 8px;
+  min-width: 0;
+  flex-wrap: wrap;
 }
 
 .neighbor-name {
-  font-weight: 700;
-  font-size: 15px;
+  font-weight: 800;
+  font-size: 16px;
   color: var(--ink);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  letter-spacing: -0.01em;
+}
+
+.neighbor-swaps-badge {
+  font-size: 10.5px;
+  font-weight: 700;
+  color: var(--green-deep);
+  background: var(--green-tint);
+  border: 1px solid var(--green-tint-border);
+  padding: 1px 7px;
+  border-radius: var(--radius-full);
 }
 
 .neighbor-distance {
   font-size: 11.5px;
   color: var(--green-mid);
-  font-weight: 700;
+  font-weight: 800;
   flex-shrink: 0;
+  background: rgba(20, 121, 90, 0.08);
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
 }
 
 .neighbor-area {
-  font-size: 12px;
+  font-size: 12.5px;
   color: var(--ink-soft);
-  margin-bottom: 2px;
   display: flex;
   align-items: center;
+  gap: 4px;
 }
 
 .neighbor-rating-row {
-  margin-bottom: 2px;
+  margin: 2px 0;
+}
+
+/* Skill Sections */
+.neighbor-skills-section {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  margin-top: 4px;
+}
+
+.neighbor-skills-section--wants {
+  margin-top: 6px;
+}
+
+.skills-group-label {
+  font-size: 9.5px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  color: var(--ink-muted);
+}
+
+.skills-group-label--wants {
+  color: #B56041;
 }
 
 .neighbor-skills {
   display: flex;
   flex-wrap: wrap;
-  gap: 5px;
-  margin-top: 4px;
+  gap: 6px;
+  align-items: center;
+}
+
+.skill-chip-more {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--ink-soft);
+  background: rgba(0, 0, 0, 0.04);
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
+}
+
+/* Actions Column */
+.neighbor-actions {
+  display: flex;
+  align-items: center;
+  align-self: center;
+  flex-shrink: 0;
 }
 
 .request-btn {
-  align-self: center;
-  background: var(--marigold);
-  color: #3A2506;
-  border: none;
-  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--grad-marigold);
+  color: #2A1902;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  font-weight: 800;
   font-size: 12.5px;
-  padding: 8px 14px;
+  padding: 9px 16px;
   border-radius: var(--radius-full);
   cursor: pointer;
-  flex-shrink: 0;
   transition: all var(--transition-fast);
-  box-shadow: 0 2px 6px rgba(232, 163, 61, 0.3);
+  box-shadow: 0 4px 12px rgba(245, 166, 35, 0.3);
 }
 
 .request-btn:hover {
-  background: var(--marigold-deep);
-  transform: scale(1.03);
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 6px 18px rgba(245, 166, 35, 0.45);
+  filter: brightness(1.05);
 }
 
 .request-btn:active {
   transform: scale(0.96);
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 480px) {
+  .neighbor-card {
+    padding: 14px 15px;
+    gap: 12px;
+  }
+
+  .neighbor-avatar {
+    width: 48px;
+    height: 48px;
+    font-size: 22px;
+  }
+
+  .request-btn {
+    padding: 7px 12px;
+    font-size: 12px;
+  }
 }

@@ -1,36 +1,42 @@
+/* Modern Glassmorphic OTP Verification Screen */
 .otp-page {
   flex: 1;
   display: flex;
   flex-direction: column;
-  padding: 24px 24px 32px;
+  padding: 28px 24px 32px;
   width: 100%;
 }
 
 @media (min-width: 600px) {
   .otp-page {
-    max-width: 480px;
-    margin: 48px auto 60px;
-    padding: 40px 36px;
-    background: var(--card);
-    border: 1px solid var(--line);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-card);
+    max-width: 500px;
+    margin: 50px auto 60px;
+    padding: 44px 40px;
+    background: var(--card-glass);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--line-glass);
+    border-radius: var(--radius-xl);
+    box-shadow: 0 20px 48px rgba(11, 28, 20, 0.12);
   }
 }
 
 .back-link {
   align-self: flex-start;
-  background: none;
+  background: rgba(0, 0, 0, 0.04);
   border: none;
   color: var(--ink-soft);
   font-weight: 700;
   font-size: 13px;
   cursor: pointer;
-  padding: 6px 0;
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
   margin-bottom: 24px;
+  transition: all var(--transition-fast);
 }
 
 .back-link:hover {
+  background: var(--green-tint);
   color: var(--green-deep);
 }
 
@@ -40,57 +46,60 @@
 
 .otp-title {
   font-family: var(--font-display);
-  font-size: 26px;
-  font-weight: 600;
+  font-size: 28px;
+  font-weight: 700;
   color: var(--ink);
   margin: 0 0 8px;
+  letter-spacing: -0.01em;
 }
 
 .otp-sub {
-  font-size: 13.5px;
+  font-size: 14px;
   color: var(--ink-soft);
   margin: 0;
-  line-height: 1.5;
+  line-height: 1.55;
 }
 
 .otp-sub strong {
-  color: var(--ink);
+  color: var(--green-deep);
 }
 
 .otp-inputs {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
-  gap: 8px;
-  margin-bottom: 20px;
+  gap: 10px;
+  margin-bottom: 22px;
 }
 
 .otp-digit {
   width: 100%;
   aspect-ratio: 1;
   text-align: center;
-  font-size: 24px;
-  font-weight: 700;
+  font-size: 26px;
+  font-weight: 800;
   color: var(--green-deep);
   border: 1.5px solid var(--line-strong);
-  border-radius: var(--radius-sm);
-  background: var(--card);
+  border-radius: var(--radius-md);
+  background: #FFFFFF;
   outline: none;
   transition: all var(--transition-fast);
+  box-shadow: var(--shadow-sm);
 }
 
 .otp-digit:focus {
   border-color: var(--green-mid);
-  background: var(--green-tint);
-  box-shadow: 0 0 0 3px rgba(20, 121, 90, 0.15);
+  background: #FFFFFF;
+  box-shadow: 0 0 0 4px rgba(20, 121, 90, 0.14);
+  transform: translateY(-2px);
 }
 
 .otp-digit--error {
   border-color: var(--clay) !important;
-  background: var(--clay-tint) !important;
+  background: rgba(196, 96, 63, 0.06) !important;
 }
 
 .otp-error-msg {
-  font-size: 12.5px;
+  font-size: 13px;
   color: var(--clay);
   font-weight: 600;
   text-align: center;
@@ -98,7 +107,9 @@
 }
 
 .verify-btn {
-  margin-bottom: 18px;
+  margin-bottom: 20px;
+  padding: 14px 22px;
+  font-size: 15px;
 }
 
 .otp-resend-row {
@@ -107,7 +118,7 @@
 }
 
 .otp-countdown {
-  font-size: 12.5px;
+  font-size: 13px;
   color: var(--ink-soft);
   margin: 0;
 }
@@ -122,7 +133,7 @@
   border: none;
   color: var(--green-deep);
   font-weight: 800;
-  font-size: 13px;
+  font-size: 13.5px;
   cursor: pointer;
   text-decoration: underline;
   padding: 4px 8px;
@@ -130,32 +141,33 @@
 
 .otp-helper-card {
   margin-top: auto;
-  background: var(--paper);
-  border: 1px dashed var(--line-strong);
-  border-radius: var(--radius-sm);
-  padding: 12px;
+  background: rgba(255, 255, 255, 0.85);
+  border: 1.5px dashed var(--line-strong);
+  border-radius: var(--radius-md);
+  padding: 14px;
   text-align: center;
 }
 
 .helper-label {
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 700;
   color: var(--ink-soft);
-  margin: 0 0 8px;
+  margin: 0 0 10px;
 }
 
 .fill-code-btn {
-  background: var(--green-tint);
-  border: 1px solid var(--green-tint-border);
-  color: var(--green-deep);
+  background: var(--grad-emerald);
+  border: none;
+  color: #FFFFFF;
   font-weight: 700;
-  font-size: 12px;
-  padding: 6px 14px;
+  font-size: 12.5px;
+  padding: 8px 18px;
   border-radius: var(--radius-full);
   cursor: pointer;
+  transition: all var(--transition-fast);
 }
 
 .fill-code-btn:hover {
-  background: var(--green-mid);
-  color: #FFFFFF;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(11, 94, 66, 0.25);
 }
