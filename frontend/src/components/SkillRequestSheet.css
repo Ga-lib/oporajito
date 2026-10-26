@@ -1,0 +1,107 @@
+.request-neighbor-summary {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.sheet-avatar {
+  font-size: 32px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--green-tint);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1.5px solid var(--green-tint-border);
+}
+
+.request-neighbor-name {
+  font-size: 12.5px;
+  color: var(--ink-soft);
+  margin: 2px 0 0;
+  font-weight: 600;
+}
+
+.request-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.skill-radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.skill-pick-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  background: var(--paper);
+  border: 1.5px solid var(--line-strong);
+  color: var(--ink);
+  font-size: 13.5px;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: left;
+  transition: all var(--transition-fast);
+}
+
+.skill-pick-btn:hover {
+  background: var(--green-tint);
+  border-color: var(--green-mid);
+}
+
+.skill-pick-btn--active {
+  background: var(--green-tint);
+  border-color: var(--green-deep);
+  color: var(--green-deep);
+  font-weight: 700;
+}
+
+.skill-pick-bullet {
+  font-size: 14px;
+  color: var(--green-deep);
+}
+
+.char-count {
+  font-size: 11px;
+  color: var(--ink-light);
+  align-self: flex-end;
+  margin-top: 4px;
+}
+
+.privacy-pill {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  background: var(--green-tint);
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  font-size: 11.5px;
+  color: var(--green-deep);
+  font-weight: 600;
+  line-height: 1.4;
+  margin-bottom: 20px;
+}
+
+.privacy-pill svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.sheet-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.sheet-actions .outline-btn {
+  flex: 1;
+}
+
+.sheet-actions .primary-btn {
+  flex: 2;
+}

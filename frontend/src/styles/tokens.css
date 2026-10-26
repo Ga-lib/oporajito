@@ -1,0 +1,61 @@
+/* Design Tokens for Oporajito
+   Hyperlocal Skill-Sharing Web Application (Bangladesh) */
+
+:root {
+  /* Brand Palette */
+  --green-deep: #0B5E42;       /* Primary brand green */
+  --green-mid: #14795A;        /* Interactive/hover green */
+  --green-light: #1E9E76;      /* Accent green */
+  --green-tint: #E6F1EA;       /* Soft green background tint */
+  --green-tint-border: #BCD9C7;/* Border for green tint */
+
+  --marigold: #E8A33D;         /* Warm golden accent */
+  --marigold-deep: #C97F1E;    /* Darker marigold for borders & text */
+  --marigold-tint: #FCF4E7;    /* Soft marigold background */
+
+  --clay: #C4603F;             /* Secondary terracotta/clay */
+  --clay-deep: #A44C2E;        /* Deep clay for hover/accents */
+  --clay-tint: #F5E3DB;        /* Soft clay background */
+
+  --ink: #1C231F;              /* Deep readable ink black */
+  --ink-soft: #5B685F;         /* Muted text grey-green */
+  --ink-light: #8E9C92;        /* Subtle secondary text */
+
+  --paper: #F3F6F0;            /* Warm Bangladeshi paper background */
+  --card: #FFFFFF;             /* Pure card white */
+  --line: #DEE5DA;             /* Soft dividing line */
+  --line-strong: #C4D0C0;      /* Distinct input/card border */
+
+  /* Status Colors */
+  --status-pending: #E8A33D;
+  --status-pending-bg: #FCF4E7;
+  --status-accepted: #0B5E42;
+  --status-accepted-bg: #E6F1EA;
+  --status-declined: #C4603F;
+  --status-declined-bg: #F5E3DB;
+  --status-completed: #14795A;
+  --status-completed-bg: #D9EFE6;
+
+  /* Typography */
+  --font-display: 'Fraunces', Georgia, 'Times New Roman', serif;
+  --font-body: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  /* Border Radii */
+  --radius-xs: 6px;
+  --radius-sm: 9px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+  --radius-xl: 32px;
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 3px rgba(28, 35, 31, 0.05);
+  --shadow-card: 0 1px 2px rgba(28, 35, 31, 0.04), 0 8px 24px rgba(28, 35, 31, 0.07);
+  --shadow-pop: 0 12px 32px rgba(11, 94, 66, 0.16);
+  --shadow-sheet: 0 -8px 32px rgba(28, 35, 31, 0.16);
+  --shadow-float: 0 6px 20px rgba(0, 0, 0, 0.12);
+
+  /* Transitions */
+  --transition-fast: 0.15s ease;
+  --transition-normal: 0.25s ease;
+}

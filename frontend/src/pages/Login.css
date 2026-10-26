@@ -1,0 +1,224 @@
+.login-page {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 36px 24px 28px;
+  width: 100%;
+}
+
+@media (min-width: 600px) {
+  .login-page {
+    max-width: 480px;
+    margin: 48px auto 60px;
+    padding: 40px 36px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card);
+  }
+}
+
+.login-hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.brand-mark {
+  width: 58px;
+  height: 58px;
+  border-radius: 18px;
+  background: var(--green-deep);
+  color: var(--marigold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 32px;
+  font-weight: 700;
+  box-shadow: 0 8px 24px rgba(11, 94, 66, 0.25);
+  margin-bottom: 6px;
+}
+
+.brand-title {
+  font-family: var(--font-display);
+  font-size: 32px;
+  font-weight: 600;
+  color: var(--green-deep);
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.brand-sub {
+  font-size: 13.5px;
+  color: var(--ink-soft);
+  max-width: 280px;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.field-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.phone-input-container {
+  display: flex;
+  align-items: center;
+  border: 1.5px solid var(--line-strong);
+  border-radius: var(--radius-md);
+  background: var(--card);
+  overflow: hidden;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.phone-input-container:focus-within {
+  border-color: var(--green-mid);
+  box-shadow: 0 0 0 3px rgba(20, 121, 90, 0.12);
+}
+
+.phone-input-container--error {
+  border-color: var(--clay) !important;
+}
+
+.phone-prefix {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 13px 12px;
+  font-weight: 700;
+  color: var(--ink);
+  border-right: 1.5px solid var(--line);
+  background: var(--green-tint);
+  user-select: none;
+}
+
+.bd-flag {
+  font-size: 16px;
+}
+
+.phone-input-container input {
+  flex: 1;
+  border: none;
+  outline: none;
+  padding: 13px 14px;
+  font-size: 16px;
+  font-weight: 600;
+  background: transparent;
+  color: var(--ink);
+  min-width: 0;
+}
+
+.field-hint {
+  font-size: 11.5px;
+  color: var(--ink-soft);
+  margin: 6px 2px 16px;
+  line-height: 1.4;
+}
+
+.field-error {
+  font-size: 12px;
+  color: var(--clay);
+  font-weight: 600;
+  margin: 6px 2px 14px;
+}
+
+.onboarding-toggle-row {
+  margin-bottom: 18px;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--ink-soft);
+  cursor: pointer;
+  user-select: none;
+}
+
+.checkbox-label input[type="checkbox"] {
+  accent-color: var(--green-deep);
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+.login-btn {
+  margin-bottom: 20px;
+}
+
+.dev-shortcuts-box {
+  background: var(--paper);
+  border: 1px dashed var(--line-strong);
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+  margin-bottom: 18px;
+}
+
+.shortcuts-label {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--ink-soft);
+  margin-bottom: 6px;
+}
+
+.shortcut-buttons {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.shortcut-pill {
+  border: 1px solid var(--green-tint-border);
+  background: var(--green-tint);
+  color: var(--green-deep);
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 8px;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.shortcut-pill:hover {
+  background: var(--green-mid);
+  color: #FFFFFF;
+}
+
+.shortcut-pill--new {
+  border-color: var(--marigold);
+  background: var(--status-pending-bg);
+  color: #7A4B0A;
+}
+
+.safety-guarantee {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11.5px;
+  color: var(--green-deep);
+  font-weight: 600;
+  line-height: 1.4;
+  text-align: left;
+  background: var(--green-tint);
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+}
+
+.safety-guarantee svg {
+  flex-shrink: 0;
+}

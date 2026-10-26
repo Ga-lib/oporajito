@@ -1,0 +1,26 @@
+.safety-sheet {
+  max-height: 80vh;
+}
+
+.block-warning-box {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  background: var(--clay-tint);
+  border: 1.5px solid var(--clay);
+  border-radius: var(--radius-md);
+  padding: 14px;
+  margin-bottom: 20px;
+}
+
+.block-icon {
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.block-warning-box p {
+  font-size: 13px;
+  color: var(--ink);
+  line-height: 1.5;
+  margin: 0;
+}

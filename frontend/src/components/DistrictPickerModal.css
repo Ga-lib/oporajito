@@ -1,0 +1,134 @@
+.district-sheet {
+  max-height: 82vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.sheet-subtitle {
+  font-size: 12px;
+  color: var(--ink-soft);
+  margin: 2px 0 0;
+}
+
+.district-search-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--paper);
+  border: 1.5px solid var(--line-strong);
+  border-radius: var(--radius-md);
+  padding: 10px 12px;
+  margin-bottom: 12px;
+}
+
+.district-search-bar input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  outline: none;
+  font-size: 13.5px;
+  color: var(--ink);
+}
+
+.clear-search-btn {
+  background: none;
+  border: none;
+  color: var(--ink-soft);
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.division-chips-row {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+  margin-bottom: 12px;
+  scrollbar-width: none;
+}
+
+.division-chips-row::-webkit-scrollbar {
+  display: none;
+}
+
+.division-chip {
+  flex-shrink: 0;
+  border: 1px solid var(--line-strong);
+  background: var(--card);
+  color: var(--ink-soft);
+  font-size: 11.5px;
+  font-weight: 700;
+  padding: 5px 11px;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.division-chip--active {
+  background: var(--green-deep);
+  border-color: var(--green-deep);
+  color: #FFFFFF;
+}
+
+.district-grid {
+  flex: 1;
+  overflow-y: auto;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+  padding-right: 4px;
+  margin-bottom: 8px;
+}
+
+.district-item-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px;
+  background: var(--paper);
+  border: 1.5px solid var(--line);
+  border-radius: var(--radius-sm);
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: left;
+  transition: all var(--transition-fast);
+}
+
+.district-item-btn:hover {
+  background: var(--green-tint);
+  border-color: var(--green-mid);
+  color: var(--green-deep);
+}
+
+.district-item-btn--selected {
+  background: var(--green-tint);
+  border-color: var(--green-deep);
+  color: var(--green-deep);
+  font-weight: 700;
+}
+
+.district-check {
+  color: var(--green-deep);
+  font-weight: 800;
+}
+
+.no-district-match {
+  grid-column: 1 / -1;
+  text-align: center;
+  color: var(--ink-soft);
+  font-size: 13px;
+  padding: 30px 10px;
+}
+
+@media (min-width: 768px) {
+  .district-sheet {
+    max-width: 620px;
+    height: 560px;
+  }
+
+  .district-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

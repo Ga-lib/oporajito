@@ -1,0 +1,44 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+frontend/node_modules/
+
+# Python Virtual Environments
+.venv/
+venv/
+ENV/
+backend/.venv/
+__pycache__/
+*.py[cod]
+*$py.class
+backend/**/__pycache__/
+
+# Testing and Coverage
+.pytest_cache/
+backend/.pytest_cache/
+.coverage
+htmlcov/
+
+# Production Builds
+dist/
+build/
+frontend/dist/
+
+# Environment Variables & Secrets
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+*.env
+serviceAccountKey.json
+backend/serviceAccountKey.json
+
+# IDE & OS Metadata
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db

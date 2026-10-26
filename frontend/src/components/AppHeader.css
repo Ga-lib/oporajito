@@ -1,0 +1,266 @@
+.app-top-header {
+  background: var(--card);
+  border-bottom: 1px solid var(--line);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  width: 100%;
+  box-shadow: 0 1px 4px rgba(28, 35, 31, 0.04);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  min-height: 60px;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand-badge-mini {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.brand-dot-box {
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: var(--green-deep);
+  color: var(--marigold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 6px rgba(11, 94, 66, 0.2);
+}
+
+.brand-mark-char {
+  font-family: var(--font-display);
+  font-size: 19px;
+  font-weight: 700;
+}
+
+.brand-text-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.brand-name-mini {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--green-deep);
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+}
+
+.brand-subtitle-desktop {
+  font-size: 11px;
+  color: var(--ink-soft);
+  font-weight: 600;
+  display: none;
+}
+
+.header-title-mobile {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--ink);
+  margin: 0;
+}
+
+.back-btn {
+  background: none;
+  border: none;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 8px;
+  margin-left: -6px;
+  color: var(--ink);
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 13.5px;
+  border-radius: var(--radius-sm);
+  transition: background var(--transition-fast);
+}
+
+.back-btn:hover {
+  background: var(--paper);
+}
+
+.back-btn-text {
+  display: none;
+}
+
+/* Desktop Navigation Links */
+.desktop-nav-links {
+  display: none;
+  align-items: center;
+  gap: 6px;
+}
+
+.desktop-nav-link {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: var(--radius-full);
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--ink-soft);
+  transition: all var(--transition-fast);
+  text-decoration: none;
+}
+
+.desktop-nav-link:hover {
+  color: var(--green-deep);
+  background: var(--green-tint);
+}
+
+.desktop-nav-link--active {
+  color: var(--green-deep);
+  background: var(--green-tint);
+}
+
+.desktop-badge {
+  background: var(--marigold);
+  color: #3A2506;
+  font-size: 10px;
+  font-weight: 800;
+  padding: 1px 6px;
+  border-radius: 100px;
+}
+
+/* Header Right */
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.district-header-pill {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--paper);
+  color: var(--green-deep);
+  border: 1.5px solid var(--line-strong);
+  font-size: 12.5px;
+  font-weight: 700;
+  padding: 6px 12px;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.district-header-pill:hover {
+  background: var(--green-tint);
+  border-color: var(--green-mid);
+}
+
+.pill-arrow {
+  font-size: 10px;
+  opacity: 0.7;
+}
+
+.notif-bell-btn {
+  position: relative;
+  background: none;
+  border: none;
+  padding: 7px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink);
+  border-radius: 50%;
+  transition: background var(--transition-fast);
+}
+
+.notif-bell-btn:hover {
+  background: var(--paper);
+}
+
+.notif-badge {
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  background: var(--clay);
+  color: #FFFFFF;
+  font-size: 10px;
+  font-weight: 800;
+  min-width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1.5px solid var(--card);
+}
+
+.desktop-profile-btn {
+  display: none;
+  align-items: center;
+  gap: 8px;
+  background: var(--paper);
+  border: 1.5px solid var(--line);
+  padding: 4px 12px 4px 5px;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.desktop-profile-btn:hover {
+  border-color: var(--green-mid);
+  background: var(--green-tint);
+}
+
+.desktop-profile-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--card);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+}
+
+.desktop-profile-name {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+/* Tablet & Desktop Breakpoint (min-width: 768px) */
+@media (min-width: 768px) {
+  .brand-subtitle-desktop {
+    display: inline-block;
+  }
+
+  .desktop-nav-links {
+    display: flex;
+  }
+
+  .desktop-profile-btn {
+    display: flex;
+  }
+
+  .back-btn-text {
+    display: inline;
+  }
+
+  .header-title-mobile {
+    display: none;
+  }
+}
